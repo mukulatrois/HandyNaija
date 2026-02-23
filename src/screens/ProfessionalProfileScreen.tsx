@@ -5,6 +5,7 @@ import { useRoute, RouteProp } from '@react-navigation/native';
 import { goBack } from '../navigation/navigationService';
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
 import { Button } from '../components';
+import CustomIcon, { IconNames } from '../components/Icon';
 
 type ProfessionalProfileRouteProp = RouteProp<{ params: { categoryId?: string } }, 'params'>;
 
@@ -23,7 +24,7 @@ export default function ProfessionalProfileScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <TouchableOpacity onPress={goBack} style={styles.backButton}>
-          <Text style={styles.backArrow}>←</Text>
+          <CustomIcon name={IconNames.arrowBack} size={fontSize(20)} color="#000" />
           <Text style={styles.backText}>Profile</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Handyman</Text>
@@ -40,15 +41,17 @@ export default function ProfessionalProfileScreen() {
             style={styles.favoriteButton}
             onPress={() => setIsFavorited(!isFavorited)}
           >
-            <Text style={[styles.heartIcon, isFavorited && styles.heartIconActive]}>
-              {isFavorited ? '❤️' : '🤍'}
-            </Text>
+            <CustomIcon 
+              name={isFavorited ? IconNames.heart : IconNames.heartOutline} 
+              size={fontSize(32)} 
+              color={isFavorited ? '#FF3B30' : '#999'} 
+            />
           </TouchableOpacity>
 
           <View style={styles.profileHeader}>
             <View style={styles.profileImageContainer}>
               <View style={styles.profileImage}>
-                <Text style={styles.profileImageText}>👷</Text>
+                <CustomIcon name="person" size={fontSize(40)} color="#999" />
               </View>
               <View style={styles.onlineIndicator} />
             </View>
@@ -66,7 +69,10 @@ export default function ProfessionalProfileScreen() {
 
               <View style={styles.statsRow}>
                 <Text style={styles.statText}>656 Services</Text>
-                <Text style={styles.ratingText}>⭐ 4.8 | 4,323 Reviews</Text>
+                <View style={styles.ratingContainer}>
+                  <CustomIcon name={IconNames.star} size={fontSize(14)} color="#FFD700" />
+                  <Text style={styles.ratingText}> 4.8 | 4,323 Reviews</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -74,22 +80,22 @@ export default function ProfessionalProfileScreen() {
           {/* Info Buttons */}
           <View style={styles.infoButtons}>
             <TouchableOpacity style={styles.infoButton}>
-              <Text style={styles.infoIcon}>🏢</Text>
+              <CustomIcon name={IconNames.business} size={fontSize(16)} color="#666" />
               <Text style={styles.infoText}>Business Profile</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.infoButton}>
-              <Text style={styles.infoIcon}>🔄</Text>
+              <CustomIcon name={IconNames.refresh} size={fontSize(16)} color="#666" />
               <Text style={styles.infoText}>7 have repeated</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.infoButton}>
-              <Text style={styles.infoIcon}>📅</Text>
+              <CustomIcon name={IconNames.calendar} size={fontSize(16)} color="#666" />
               <Text style={styles.infoText}>Updated schedule</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.infoButton}>
-              <Text style={styles.infoIcon}>💰</Text>
+              <CustomIcon name={IconNames.cash} size={fontSize(16)} color="#666" />
               <Text style={styles.infoText}>Minimum charge ₦30</Text>
             </TouchableOpacity>
           </View>
@@ -143,10 +149,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  backArrow: {
-    fontSize: fontSize(20),
-    color: '#000',
-    marginRight: padding.xs,
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   backText: {
     fontSize: fontSize(16),
@@ -184,12 +189,6 @@ const styles = StyleSheet.create({
     right: padding.lg,
     zIndex: 10,
   },
-  heartIcon: {
-    fontSize: fontSize(32),
-  },
-  heartIconActive: {
-    fontSize: fontSize(32),
-  },
   profileHeader: {
     flexDirection: 'row',
     marginBottom: margin.lg,
@@ -206,8 +205,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  profileImageText: {
-    fontSize: fontSize(40),
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   onlineIndicator: {
     position: 'absolute',
@@ -288,9 +288,16 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.md,
     minWidth: scale(120),
   },
-  infoIcon: {
-    fontSize: fontSize(16),
-    marginRight: padding.xs,
+  infoButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+    paddingHorizontal: padding.md,
+    paddingVertical: padding.sm,
+    borderRadius: borderRadius.md,
+    minWidth: scale(120),
+    marginRight: margin.sm,
+    marginBottom: margin.sm,
   },
   infoText: {
     fontSize: fontSize(12),

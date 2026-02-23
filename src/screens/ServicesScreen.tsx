@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
-import { Button } from '../components';
+import { Button, ScreenHeader, EmptyState } from '../components';
+import CustomIcon, { IconNames } from '../components/Icon';
 
 interface Service {
   id: string;
@@ -73,26 +74,21 @@ export default function ServicesScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>My Services</Text>
-      </View>
+      <ScreenHeader title="My Services" titleColor="#000" backgroundColor="#fff" borderBottomColor="#E0E0E0" />
 
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
         {services.length === 0 ? (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyEmoji}>📋</Text>
-            <Text style={styles.emptyText}>No services yet</Text>
-            <Text style={styles.emptySubtext}>Book a service to get started</Text>
-            <Button
-              title="Find Services"
-              onPress={() => {}}
-              variant="primary"
-              style={{ marginTop: margin.xl }}
-            />
-          </View>
+          <EmptyState
+            icon={<CustomIcon name={IconNames.clipboard} size={fontSize(60)} color="#999" />}
+            title="No services yet"
+            subtitle="Book a service to get started"
+            actionLabel="Find Services"
+            onAction={() => {}}
+          />
         ) : (
           <View style={styles.servicesList}>
             {services.map((service) => (
@@ -105,8 +101,14 @@ export default function ServicesScreen() {
                     </Text>
                   </View>
                 </View>
-                <Text style={styles.professionalName}>👤 {service.professional}</Text>
-                <Text style={styles.serviceDate}>📅 {service.date}</Text>
+                <View style={styles.professionalRow}>
+                  <CustomIcon name={IconNames.person} size={fontSize(14)} color="#666" />
+                  <Text style={styles.professionalName}> {service.professional}</Text>
+                </View>
+                <View style={styles.dateRow}>
+                  <CustomIcon name={IconNames.calendar} size={fontSize(14)} color="#666" />
+                  <Text style={styles.serviceDate}> {service.date}</Text>
+                </View>
                 <View style={styles.serviceFooter}>
                   <Text style={styles.servicePrice}>{service.price}</Text>
                   <TouchableOpacity style={styles.viewButton}>
@@ -127,41 +129,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5F5F5',
   },
-  header: {
-    paddingHorizontal: padding.xl,
-    paddingVertical: padding.lg,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-  },
-  headerTitle: {
-    fontSize: fontSize(24),
-    fontWeight: 'bold',
-    color: '#000',
-  },
   scrollContent: {
     padding: padding.xl,
     paddingBottom: margin.xxxl,
-  },
-  emptyContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: margin.xxxl,
-  },
-  emptyEmoji: {
-    fontSize: fontSize(64),
-    marginBottom: margin.lg,
-  },
-  emptyText: {
-    fontSize: fontSize(20),
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: margin.sm,
-  },
-  emptySubtext: {
-    fontSize: fontSize(14),
-    color: '#666',
-    textAlign: 'center',
   },
   servicesList: {
     gap: margin.md,
@@ -197,15 +167,23 @@ const styles = StyleSheet.create({
     fontSize: fontSize(12),
     fontWeight: '600',
   },
+  professionalRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: margin.xs,
+  },
   professionalName: {
     fontSize: fontSize(14),
     color: '#666',
-    marginBottom: margin.xs,
+  },
+  dateRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: margin.md,
   },
   serviceDate: {
     fontSize: fontSize(14),
     color: '#666',
-    marginBottom: margin.md,
   },
   serviceFooter: {
     flexDirection: 'row',

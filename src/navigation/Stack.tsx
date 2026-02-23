@@ -19,7 +19,6 @@ import SelectCountryScreen from '../screens/SelectCountryScreen';
 import ProfessionalProfileScreen from '../screens/ProfessionalProfileScreen';
 import ChatConversationScreen from '../screens/ChatConversationScreen';
 import TabNavigator from './TabNavigator';
-import ProviderTabNavigator from './ProviderTabNavigator';
 import SearchScreen from '../screens/SearchServices/SearchScreen';
 import RepairMaintenance from '../screens/SearchServices/RepairMaintenance';
 import Home from '../screens/SearchServices/Home';
@@ -29,17 +28,8 @@ import TechIT from '../screens/SearchServices/TectIT';
 import Automobile from '../screens/SearchServices/Automobile';
 import Others from '../screens/SearchServices/Others';
 import AddAddressScreen from '../screens/AddAddress';
-import RequestDetailScreen from '../screens/Provider/RequestDetailScreen';
-import UpdateEventScreen from '../screens/Provider/UpdateEventScreen';
-import PersonalDetailsScreen from '../screens/Provider/PersonalDetailsScreen';
-import EditProfileScreen from '../screens/Provider/EditProfileScreen';
-import ChangePasswordScreen from '../screens/Provider/ChangePasswordScreen';
-import MyBalanceScreen from '../screens/MyBalanceScreen';
-import CreateListingScreen from '../screens/Provider/CreateListingScreen';
-import ListingPriceScreen from '../screens/Provider/ListingPriceScreen';
-import ListingPhoneScreen from '../screens/Provider/ListingPhoneScreen';
-import ListingVerificationScreen from '../screens/Provider/ListingVerificationScreen';
-import ListingAboutMeScreen from '../screens/Provider/ListingAboutMeScreen';
+import FindProfessionalsScreen from '../screens/FindProfessionals';
+import ProfessionalDetailScreen from '../screens/ProfessionalDetail';
 
 // Wrapper component with default props for initial route
 
@@ -53,7 +43,7 @@ export default function StackNavigator() {
           headerShown: false,
           animation: 'slide_from_right',
         }}
-        initialRouteName='ProviderTabs'
+        initialRouteName='Splash'
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Splash" component={SplashScreen} />
@@ -120,14 +110,6 @@ export default function StackNavigator() {
         <Stack.Screen
           name="MainTabs"
           component={TabNavigator}
-          options={{
-            headerShown: false,
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ProviderTabs"
-          component={ProviderTabNavigator}
           options={{
             headerShown: false,
             animation: 'slide_from_right',
@@ -216,79 +198,18 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
-          name="RequestDetail"
-          component={RequestDetailScreen}
+          name="FindProfessionals"
+          component={FindProfessionalsScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="UpdateEvent"
-          component={UpdateEventScreen}
+          name="ProfessionalDetail"
+          component={ProfessionalDetailScreen}
           options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="PersonalDetails"
-          component={PersonalDetailsScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="EditProfile"
-          component={EditProfileScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ChangePassword"
-          component={ChangePasswordScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="MyBalance"
-          component={MyBalanceScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="CreateListing"
-          component={CreateListingScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ListingPrice"
-          component={ListingPriceScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ListingPhone"
-          component={ListingPhoneScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ListingVerification"
-          component={ListingVerificationScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ListingAboutMe"
-          component={ListingAboutMeScreen}
-          options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />

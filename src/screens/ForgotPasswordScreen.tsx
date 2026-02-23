@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { navigate } from '../navigation/navigationService';
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
@@ -14,6 +14,11 @@ export default function ForgotPasswordScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <Image
+                          source={require('../Images/logo.png')}
+                          style={styles.logo}
+                          resizeMode="contain"
+                        />
         <Text style={styles.title}>Forgot Password</Text>
         <Text style={styles.subtitle}>
           Select which contact details should we used to reset your password
@@ -55,6 +60,11 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: padding.xl,
     paddingTop: scale(40),
+  },
+  logo: {
+    width: scale(180),
+    height: scale(180),
+    alignSelf: 'center',
   },
   title: {
     fontSize: fontSize(28),

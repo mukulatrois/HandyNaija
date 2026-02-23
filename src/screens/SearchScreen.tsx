@@ -10,6 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { wp, hp, scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
 import Button from '../components/Button';
 import { navigate } from '../navigation/navigationService';
+import CustomIcon, { IconNames } from '../components/Icon';
 
 const CIRCLE = wp(28);
 
@@ -32,12 +33,12 @@ export default function HandyNaijaScreen() {
         <Text style={styles.title}>HandyNaija</Text>
 
         <View style={{ flexDirection: 'row' }}>
-          <View style={styles.headerBtn}>
-            <Text style={styles.headerIcon}>🔍</Text>
-          </View>
-          <View style={styles.headerBtn}>
-            <Text style={styles.headerIcon}>🔔</Text>
-          </View>
+          <TouchableOpacity style={styles.headerBtn}>
+            <CustomIcon name={IconNames.search} size={fontSize(18)} color="#000" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.headerBtn}>
+            <CustomIcon name={IconNames.notifications} size={fontSize(18)} color="#000" />
+          </TouchableOpacity>
         </View>
       </View>
         <View style={styles.leftBar} />
@@ -105,7 +106,7 @@ export default function HandyNaijaScreen() {
       {/* ADD ADDRESS BUTTON */}
       <View style={styles.addBtnWrapper}>
         <Button
-          title="＋ Add address"
+          title="Add address"
           onPress={() => { }}
           variant="primary"
           style={styles.addBtn}
@@ -146,9 +147,6 @@ const styles = StyleSheet.create({
     marginLeft: margin.md,
   },
 
-  headerIcon: {
-    fontSize: fontSize(18),
-  },
 
   /* N SHAPE */
   leftBar: {

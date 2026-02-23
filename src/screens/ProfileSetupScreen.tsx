@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { navigate, goBack } from '../navigation/navigationService';
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
 import { Button, TextInput as CustomTextInput } from '../components';
+import CustomIcon, { IconNames } from '../components/Icon';
 
 type ProfileStep = 'name' | 'location' | 'contact';
 
@@ -48,7 +49,7 @@ export default function ProfileSetupScreen() {
       >
         {step !== 'name' && (
           <TouchableOpacity style={styles.backButton} onPress={goBack}>
-            <Text style={styles.backIcon}>←</Text>
+            <CustomIcon name={IconNames.arrowBack} size={fontSize(20)} color="#000" />
           </TouchableOpacity>
         )}
 

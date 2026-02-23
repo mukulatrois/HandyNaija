@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
+import { ScreenHeader, EmptyState } from '../components';
+import CustomIcon, { IconNames } from '../components/Icon';
 
 export default function NotificationScreen() {
   const notifications = [
@@ -13,23 +15,29 @@ export default function NotificationScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Notifications</Text>
-        <TouchableOpacity>
-          <Text style={styles.markAllRead}>Mark all as read</Text>
-        </TouchableOpacity>
-      </View>
+      <ScreenHeader
+        title="Notifications"
+        titleColor="#000"
+        backgroundColor="#fff"
+        borderBottomColor="#E0E0E0"
+        rightElement={
+          <TouchableOpacity activeOpacity={0.7}>
+            <Text style={styles.markAllRead}>Mark all as read</Text>
+          </TouchableOpacity>
+        }
+      />
 
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
         {notifications.length === 0 ? (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyEmoji}>🔔</Text>
-            <Text style={styles.emptyText}>No notifications yet</Text>
-            <Text style={styles.emptySubtext}>You'll see notifications here when you have updates</Text>
-          </View>
+          <EmptyState
+            icon={<CustomIcon name={IconNames.notifications} size={fontSize(64)} color="#999" />}
+            title="No notifications yet"
+            subtitle="You'll see notifications here when you have updates"
+          />
         ) : (
           notifications.map((notification) => (
             <TouchableOpacity
@@ -58,20 +66,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5F5F5',
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: padding.xl,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-  },
-  headerTitle: {
-    fontSize: fontSize(24),
-    fontWeight: 'bold',
-    color: '#000',
-  },
   markAllRead: {
     fontSize: fontSize(14),
     color: '#3FA565',
@@ -80,26 +74,6 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: padding.xl,
     paddingBottom: margin.xxxl,
-  },
-  emptyContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: margin.xxxl,
-  },
-  emptyEmoji: {
-    fontSize: fontSize(64),
-    marginBottom: margin.lg,
-  },
-  emptyText: {
-    fontSize: fontSize(20),
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: margin.sm,
-  },
-  emptySubtext: {
-    fontSize: fontSize(14),
-    color: '#666',
-    textAlign: 'center',
   },
   notificationCard: {
     flexDirection: 'row',

@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { navigate, goBack } from '../navigation/navigationService';
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
 import { Button, TextInput as CustomTextInput, FooterLink } from '../components';
+import CustomIcon, { IconNames } from '../components/Icon';
 
 export default function PhoneSignupScreen() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -22,7 +23,7 @@ export default function PhoneSignupScreen() {
         showsVerticalScrollIndicator={false}
       >
         <TouchableOpacity style={styles.backButton} onPress={goBack}>
-          <Text style={styles.backIcon}>←</Text>
+          <CustomIcon name={IconNames.arrowBack} size={fontSize(20)} color="#000" />
         </TouchableOpacity>
 
         <Text style={styles.title}>Phone Signup</Text>

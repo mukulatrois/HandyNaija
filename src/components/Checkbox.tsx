@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { scale, fontSize, padding, borderRadius } from '../utils/responsive';
+import CustomIcon, { IconNames } from './Icon';
 
 interface CheckboxProps {
   label: string;
@@ -24,7 +25,7 @@ export default function Checkbox({
       activeOpacity={0.7}
     >
       <View style={[styles.checkbox, checked && styles.checkboxChecked]}>
-        {checked && <Text style={styles.checkmark}>✓</Text>}
+        {checked && <CustomIcon name={IconNames.checkmark} size={fontSize(12)} color="#fff" />}
       </View>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
     </TouchableOpacity>
@@ -49,11 +50,6 @@ const styles = StyleSheet.create({
   checkboxChecked: {
     backgroundColor: '#3FA565',
     borderColor: '#3FA565',
-  },
-  checkmark: {
-    color: '#fff',
-    fontSize: fontSize(12),
-    fontWeight: 'bold',
   },
   label: {
     fontSize: fontSize(14),

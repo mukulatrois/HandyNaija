@@ -1,206 +1,81 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { navigate } from '../navigation/navigationService';
-import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
-
-interface ChatMessage {
-  id: string;
-  name: string;
-  service: string;
-  lastMessage: string;
-  time: string;
-  avatar: string;
-  hasSupport?: boolean;
-}
-
-interface Alert {
-  id: string;
-  icon: string;
-  title: string;
-  description: string;
-  date: string;
-}
+import { fontSize } from '../utils/responsive';
+import InboxTopTabs from '../navigation/TopNavigation';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Button, ScreenHeader } from '../components';
 
 export default function InboxScreen() {
-  const [activeTab, setActiveTab] = useState<'chat' | 'alerts'>('chat');
-  const [showSecureModal, setShowSecureModal] = useState(false);
+  const refRBSheet = useRef<any>(null);
 
-  const [chats] = useState<ChatMessage[]>([
-    {
-      id: '1',
-      name: 'YERXON',
-      service: 'Cleaning',
-      lastMessage: 'Cleaning de ester misomo preciio se podtlak...',
-      time: 'Thursday',
-      avatar: '👤',
-      hasSupport: true,
-    },
-    {
-      id: '2',
-      name: 'YERXON',
-      service: 'Handyman',
-      lastMessage: 'Need a service',
-      time: '15/6/25',
-      avatar: '👤',
-    },
-    {
-      id: '3',
-      name: 'Professional',
-      service: 'Plumbing',
-      lastMessage: 'Thank you for booking',
-      time: '14/5/25',
-      avatar: '👤',
-    },
-    {
-      id: '4',
-      name: 'Service Provider',
-      service: 'Electrical',
-      lastMessage: 'Service completed',
-      time: '25/4/24',
-      avatar: '👤',
-    },
-  ]);
+  useEffect(() => {
+    const checkFirstTime = async () => {
+      const hasOpened = await AsyncStorage.getItem('inboxSheetShown');
 
-  const [alerts] = useState<Alert[]>([
-    {
-      id: '1',
-      icon: '⭐',
-      title: 'YERXON has left you a review',
-      description: 'Check it out on your profile.',
-      date: 'Thursday',
-    },
-    {
-      id: '2',
-      icon: '⭐',
-      title: 'Rate your service with YEROXON',
-      description: 'Let us know how your Cleaning service...',
-      date: 'Wednesday',
-    },
-    {
-      id: '3',
-      icon: '📅',
-      title: 'Your service is about to begin',
-      description: 'Just a reminder: in 2 hours...',
-      date: 'Tuesday',
-    },
-    {
-      id: '4',
-      icon: '✅',
-      title: 'Booking request confirmed',
-      description: 'Congratulations! YEROXON has confirmed...',
-      date: 'Monday',
-    },
-  ]);
+      if (!hasOpened) {
+        setTimeout(() => {
+          refRBSheet.current?.open();
+        }, 500); // thoda delay taaki screen properly render ho
+
+        await AsyncStorage.setItem('inboxSheetShown', 'true');
+      }
+    };
+
+    checkFirstTime();
+  }, []);
+
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Inbox</Text>
+      <ScreenHeader title="Inbox" titleColor="#3FA565" titleStyle={{ fontSize: 28 }} />
+
+      <View style={{ flex: 1 }}>
+        <InboxTopTabs />
       </View>
 
-      {/* Tabs */}
-      <View style={styles.tabsContainer}>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'chat' && styles.activeTab]}
-          onPress={() => setActiveTab('chat')}
-        >
-          <Text style={[styles.tabText, activeTab === 'chat' && styles.activeTabText]}>
-            Chat
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'alerts' && styles.activeTab]}
-          onPress={() => setActiveTab('alerts')}
-        >
-          <Text style={[styles.tabText, activeTab === 'alerts' && styles.activeTabText]}>
-            Alerts
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <ScrollView 
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
+      <RBSheet
+        ref={refRBSheet}
+        height={620}
+        openDuration={250}
+        closeOnPressMask
+        customStyles={{
+          container: styles.sheet,
+          wrapper: styles.wrapper,
+        }}
       >
-        {activeTab === 'chat' ? (
-          <View style={styles.chatList}>
-            {chats.map((chat) => (
-              <TouchableOpacity
-                key={chat.id}
-                style={styles.chatCard}
-                onPress={() => navigate('ChatConversation' as any, { chatId: chat.id })}
-              >
-                <View style={styles.chatLeft}>
-                  <View style={styles.avatarContainer}>
-                    <Text style={styles.avatar}>{chat.avatar}</Text>
-                  </View>
-                  <View style={styles.chatInfo}>
-                    <Text style={styles.chatName}>{chat.name}</Text>
-                    <Text style={styles.chatService}>{chat.service}</Text>
-                    <Text style={styles.chatMessage} numberOfLines={1}>
-                      {chat.lastMessage}
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.chatRight}>
-                  <Text style={styles.chatTime}>{chat.time}</Text>
-                  {chat.hasSupport && (
-                    <TouchableOpacity style={styles.supportButton}>
-                      <Text style={styles.supportButtonText}>Support</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
-        ) : (
-          <View style={styles.alertsList}>
-            {alerts.map((alert) => (
-              <TouchableOpacity key={alert.id} style={styles.alertCard}>
-                <View style={styles.alertLeft}>
-                  <Text style={styles.alertIcon}>{alert.icon}</Text>
-                  <View style={styles.alertInfo}>
-                    <Text style={styles.alertTitle}>{alert.title}</Text>
-                    <Text style={styles.alertDescription}>{alert.description}</Text>
-                  </View>
-                </View>
-                <View style={styles.alertRight}>
-                  <Text style={styles.alertDate}>{alert.date}</Text>
-                  <Text style={styles.chevron}>›</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
-      </ScrollView>
+        <View style={styles.handle} />
+        <TouchableOpacity style={styles.closeBtn} onPress={() => refRBSheet.current?.close()} activeOpacity={0.7}>
+          <Text style={styles.closeText}>×</Text>
+        </TouchableOpacity>
 
-      {/* Secure Messaging Modal */}
-      {showSecureModal && (
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setShowSecureModal(false)}
-            >
-              <Text style={styles.closeIcon}>✕</Text>
-            </TouchableOpacity>
-            <View style={styles.secureBadge}>
-              <Text style={styles.secureBadgeText}>100% SECURE</Text>
-            </View>
-            <Text style={styles.secureTitle}>Helps us to protect you</Text>
-            <Text style={styles.secureDescription}>
-              Book and communicate with User always though handynaija. This way you will be protected against scams and our satisfaction guarantee.
-            </Text>
-            <TouchableOpacity
-              style={styles.gotItButton}
-              onPress={() => setShowSecureModal(false)}
-            >
-              <Text style={styles.gotItButtonText}>Got it</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.content}>
+          <Image
+            source={require('../Images/secure.png')}
+            style={styles.image}
+            resizeMode="contain"
+          />
+
+          <Text style={styles.heading}>Helps us to protect you</Text>
+
+          <Text style={styles.subText}>
+            Book and communicate with professionals always though handynija.
+          </Text>
+
+          <Text style={styles.description}>
+            This way you will be protected against scams and our satisfaction
+            guarantee.
+          </Text>
         </View>
-      )}
+
+        <Button
+          title="Got it"
+          onPress={() => refRBSheet.current?.close()}
+          variant="primary"
+          style={styles.button}
+        />
+      </RBSheet>
     </SafeAreaView>
   );
 }
@@ -210,217 +85,78 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  header: {
-    paddingHorizontal: padding.xl,
-    paddingVertical: padding.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+  wrapper: {
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
-  headerTitle: {
-    fontSize: fontSize(28),
-    fontWeight: 'bold',
-    color: '#3FA565',
-  },
-  tabsContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: padding.xl,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-  },
-  tab: {
-    paddingVertical: padding.md,
-    paddingHorizontal: padding.lg,
-    marginRight: margin.xl,
-    borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
-  },
-  activeTab: {
-    borderBottomColor: '#3FA565',
-  },
-  tabText: {
-    fontSize: fontSize(16),
-    color: '#999',
-    fontWeight: '500',
-  },
-  activeTabText: {
-    color: '#3FA565',
-    fontWeight: '600',
-  },
-  scrollContent: {
-    paddingBottom: margin.xxxl,
-  },
-  chatList: {
-    padding: padding.xl,
-  },
-  chatCard: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    paddingVertical: padding.md,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-  },
-  chatLeft: {
-    flexDirection: 'row',
-    flex: 1,
-  },
-  avatarContainer: {
-    width: scale(50),
-    height: scale(50),
-    borderRadius: scale(25),
-    backgroundColor: '#E0E0E0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: margin.md,
-  },
-  avatar: {
-    fontSize: fontSize(24),
-  },
-  chatInfo: {
-    flex: 1,
-  },
-  chatName: {
-    fontSize: fontSize(16),
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: scale(2),
-  },
-  chatService: {
-    fontSize: fontSize(14),
-    color: '#666',
-    marginBottom: scale(4),
-  },
-  chatMessage: {
-    fontSize: fontSize(14),
-    color: '#999',
-  },
-  chatRight: {
-    alignItems: 'flex-end',
-  },
-  chatTime: {
-    fontSize: fontSize(12),
-    color: '#999',
-    marginBottom: margin.xs,
-  },
-  supportButton: {
-    backgroundColor: '#3FA565',
-    paddingHorizontal: padding.md,
-    paddingVertical: padding.xs,
-    borderRadius: borderRadius.md,
-    marginTop: margin.xs,
-  },
-  supportButtonText: {
-    fontSize: fontSize(12),
-    color: '#fff',
-    fontWeight: '600',
-  },
-  alertsList: {
-    padding: padding.xl,
-  },
-  alertCard: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    paddingVertical: padding.md,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-  },
-  alertLeft: {
-    flexDirection: 'row',
-    flex: 1,
-  },
-  alertIcon: {
-    fontSize: fontSize(24),
-    marginRight: margin.md,
-  },
-  alertInfo: {
-    flex: 1,
-  },
-  alertTitle: {
-    fontSize: fontSize(16),
-    fontWeight: '600',
-    color: '#000',
-    marginBottom: scale(4),
-  },
-  alertDescription: {
-    fontSize: fontSize(14),
-    color: '#666',
-  },
-  alertRight: {
-    alignItems: 'flex-end',
-  },
-  alertDate: {
-    fontSize: fontSize(12),
-    color: '#999',
-    marginBottom: scale(4),
-  },
-  chevron: {
-    fontSize: fontSize(20),
-    color: '#999',
-  },
-  modalOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalContent: {
+
+  sheet: {
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 24,
+    paddingTop: 30,
     backgroundColor: '#fff',
-    borderRadius: borderRadius.lg,
-    padding: padding.xl,
-    margin: padding.xl,
+  },
+
+  handle: {
+    width: 40,
+    height: 4,
+    backgroundColor: '#DADADA',
+    borderRadius: 10,
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  closeBtn: {
+    position: 'absolute',
+    right: 20,
+    top: 20,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
     alignItems: 'center',
-    width: '90%',
+    justifyContent: 'center',
   },
-  closeButton: {
-    alignSelf: 'flex-end',
-    padding: padding.sm,
+  closeText: {
+    fontSize: 18,
+    color: '#666',
   },
-  closeIcon: {
-    fontSize: fontSize(20),
-    color: '#999',
+  content: {
+    alignItems: 'center',
+    marginTop: 80,
   },
-  secureBadge: {
-    backgroundColor: '#3FA565',
-    paddingHorizontal: padding.lg,
-    paddingVertical: padding.sm,
-    borderRadius: borderRadius.md,
-    marginBottom: margin.lg,
+
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 10,
   },
-  secureBadgeText: {
-    fontSize: fontSize(14),
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  secureTitle: {
-    fontSize: fontSize(24),
-    fontWeight: 'bold',
+
+  heading: {
+    fontSize: 28,
+    fontWeight: '600',
     color: '#3FA565',
     textAlign: 'center',
-    marginBottom: margin.md,
+    marginBottom: 15,
   },
-  secureDescription: {
-    fontSize: fontSize(16),
-    color: '#666',
+
+  subText: {
+    fontSize: 16,
     textAlign: 'center',
-    lineHeight: fontSize(24),
-    marginBottom: margin.xl,
+    color: '#222',
+    marginBottom: 10,
   },
-  gotItButton: {
-    backgroundColor: '#3FA565',
-    paddingHorizontal: padding.xl,
-    paddingVertical: padding.md,
-    borderRadius: borderRadius.lg,
-    width: '100%',
-    alignItems: 'center',
+
+  description: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#666',
+    paddingHorizontal: 10,
   },
-  gotItButtonText: {
-    fontSize: fontSize(16),
-    fontWeight: 'bold',
-    color: '#fff',
+
+  button: {
+    marginTop: 40,
+    marginBottom: 20,
+    backgroundColor: '#4FA96B',
   },
 });

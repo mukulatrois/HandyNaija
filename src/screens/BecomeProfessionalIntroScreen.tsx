@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { goBack } from '../navigation/navigationService';
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
 import { Button } from '../components';
+import CustomIcon, { IconNames } from '../components/Icon';
 
 const TOTAL_STEPS = 5;
 
@@ -77,7 +78,7 @@ export default function BecomeProfessionalIntroScreen() {
         {step === 0 ? (
           <>
             <TouchableOpacity onPress={goBack} style={styles.backRow}>
-              <Text style={styles.backArrow}>←</Text>
+              <CustomIcon name={IconNames.arrowBack} size={fontSize(20)} color="#000" />
               <Text style={styles.profileLink}>Profile</Text>
             </TouchableOpacity>
             <Text style={styles.headerTitle}>Become a professional</Text>
