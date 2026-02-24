@@ -273,6 +273,8 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
+          name="EditPersonalDetails"
+          component={EditPersonalDetailsScreen}
           name="ChooseLanguage"
           component={ChooseLanguageScreen}
           options={{
@@ -281,8 +283,60 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
+          name="ShareAndEarn"
+          component={ShareAndEarnScreen}
           name="PaymentsAndRefunds"
           component={PaymentsAndRefundsScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyCodes"
+          component={MyCodesScreen}
+          name="Help"
+          component={HelpScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyBookings"
+          component={MyBookingsScreen}
+          name="AboutHandynaija"
+          component={AboutHandynaijaScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyAddresses"
+          component={MyAddressesScreen}
+          name="HowCanWeImprove"
+          component={HowCanWeImproveScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="ChooseLanguage"
+          component={ChooseLanguageScreen}
+          name="PointTiers"
+          component={PointTiersScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsAndRefunds"
+          component={PaymentsAndRefundsScreen}
+          name="ReachSilver"
+          component={ReachSilverScreen}
           options={{
             headerShown: false,
             animation: 'slide_from_right',
@@ -299,6 +353,8 @@ export default function StackNavigator() {
         <Stack.Screen
           name="AboutHandynaija"
           component={AboutHandynaijaScreen}
+          name="ReachGold"
+          component={ReachGoldScreen}
           options={{
             headerShown: false,
             animation: 'slide_from_right',
