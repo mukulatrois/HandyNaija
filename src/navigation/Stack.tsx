@@ -18,11 +18,13 @@ import BecomeProfessionalSliderScreen from '../screens/Service/BecomeProfessiona
 import WorkAreasScreen from '../screens/Service/WorkAreasScreen';
 import WorkAreasListScreen from '../screens/Service/WorkAreasListScreen';
 import WorkScheduleScreen from '../screens/Service/WorkScheduleScreen';
+import WorkScheduleCalendarScreen from '../screens/Service/WorkScheduleCalendarScreen';
 import SelectCountryScreen from '../screens/SelectCountryScreen';
 import ChooseCityScreen from '../screens/ChooseCityScreen';
 import ProfessionalProfileScreen from '../screens/Service/ProfessionalProfileScreen';
 import ChatConversationScreen from '../screens/ChatConversationScreen';
 import TabNavigator from './TabNavigator';
+import ProviderTabNavigator from './ProviderTabNavigator';
 import SearchScreen from '../screens/SearchServices/SearchScreen';
 import RepairMaintenance from '../screens/SearchServices/RepairMaintenance';
 import Home from '../screens/SearchServices/Home';
@@ -45,6 +47,19 @@ import AboutHandynaijaScreen from '../screens/profile/AboutHandynaijaScreen';
 import HowCanWeImproveScreen from '../screens/profile/HowCanWeImproveScreen';
 import MyBookingsScreen from '../screens/profile/MyBookingsScreen';
 import HelpScreen from '../screens/profile/HelpScreen';
+import CreateListingScreen from '../screens/Provider/CreateListingScreen';
+import ListingAboutMeScreen from '../screens/Provider/ListingAboutMeScreen';
+import ListingVerificationScreen from '../screens/Provider/ListingVerificationScreen';
+import ListingPriceScreen from '../screens/Provider/ListingPriceScreen';
+import ListingPhoneScreen from '../screens/Provider/ListingPhoneScreen';
+import RequestDetailScreen from '../screens/Provider/RequestDetailScreen';
+import UpdateEventScreen from '../screens/Provider/UpdateEventScreen';
+import EditProfileScreen from '../screens/Provider/EditProfileScreen';
+import ChangePasswordScreen from '../screens/Provider/ChangePasswordScreen';
+import PPersonalDetailsScreen from '../screens/Provider/PersonalDetailsScreen';
+import ReachSilverScreen from '../screens/Provider/ReachSilverScreen';
+import ReachGoldScreen from '../screens/Provider/ReachGoldScreen';
+import PointTiersScreen from '../screens/Provider/PointTiersScreen';
 
 // Wrapper component with default props for initial route
 
@@ -131,6 +146,14 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
+          name="ProviderTabs"
+          component={ProviderTabNavigator}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
           name="BecomeProfessionalIntro"
           component={BecomeProfessionalIntroScreen}
         />
@@ -149,6 +172,10 @@ export default function StackNavigator() {
         <Stack.Screen
           name="WorkSchedule"
           component={WorkScheduleScreen}
+        />
+        <Stack.Screen
+          name="WorkScheduleCalendar"
+          component={WorkScheduleCalendarScreen}
         />
         <Stack.Screen
           name="SelectCountry"
@@ -331,6 +358,72 @@ export default function StackNavigator() {
             headerShown: false,
             animation: 'slide_from_right',
           }}
+        />
+        {/* Provider flow screens */}
+        <Stack.Screen
+          name="CreateListing"
+          component={CreateListingScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ListingAboutMe"
+          component={ListingAboutMeScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ListingVerification"
+          component={ListingVerificationScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ListingPrice"
+          component={ListingPriceScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ListingPhone"
+          component={ListingPhoneScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="RequestDetail"
+          component={RequestDetailScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="UpdateEvent"
+          component={UpdateEventScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfileScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ChangePassword"
+          component={ChangePasswordScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="PPersonalDetails"
+          component={PPersonalDetailsScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ReachSilver"
+          component={ReachSilverScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ReachGold"
+          component={ReachGoldScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="PointTiers"
+          component={PointTiersScreen}
+          options={{ headerShown: false, animation: 'slide_from_right' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

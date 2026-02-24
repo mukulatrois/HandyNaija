@@ -151,7 +151,7 @@ export default function WorkScheduleScreen() {
       <TouchableOpacity
         disabled={!canContinue}
         style={[styles.continueBtn, !canContinue && styles.disabledBtn]}
-        onPress={() => navigate('ProfessionalProfile')}>
+        onPress={() => navigate('WorkScheduleCalendar')}>
         <Text
           style={[
             styles.continueText,

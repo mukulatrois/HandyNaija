@@ -23,9 +23,11 @@ export type RootStackParamList = {
   WorkAreas: undefined;
   WorkAreasList: undefined;
   WorkSchedule: undefined;
+  WorkScheduleCalendar: undefined;
   SelectCountry: undefined;
   ChooseCity: undefined;
   MainTabs: undefined;
+  ProviderTabs: undefined;
   ProfessionalProfile: { categoryId?: string };
   ChatConversation: { chatId?: string };
   Search: undefined;
@@ -54,6 +56,31 @@ export type RootStackParamList = {
   Help: undefined;
   AboutHandynaija: undefined;
   HowCanWeImprove: undefined;
+  // Provider flow screens
+  CreateListing: undefined;
+  ListingAboutMe: undefined;
+  ListingVerification: undefined;
+  ListingPrice: { serviceName?: string };
+  ListingPhone: undefined;
+  RequestDetail: {
+    requestId: string;
+    name?: string;
+    avatar?: string;
+    price?: string;
+    date?: string;
+    time?: string;
+    services?: string;
+    email?: string;
+    phone?: string;
+    location?: string;
+  };
+  UpdateEvent: undefined;
+  EditProfile: undefined;
+  ChangePassword: undefined;
+  PPersonalDetails: undefined;
+  ReachSilver: undefined;
+  ReachGold: undefined;
+  PointTiers: undefined;
 };
 
 /* ---------------- NAV REF ---------------- */
