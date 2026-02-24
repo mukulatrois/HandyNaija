@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { goBack } from '../navigation/navigationService';
-import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
-import { Button } from '../components';
-import CustomIcon, { IconNames } from '../components/Icon';
+import { goBack } from '../../navigation/navigationService';
+import { scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
+import { Button } from '../../components';
+import CustomIcon, { IconNames } from '../../components/Icon';
 
 const TOTAL_STEPS = 5;
 

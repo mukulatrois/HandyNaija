@@ -13,10 +13,10 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import OTPScreen from '../screens/OTPScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ProfileSetupScreen from '../screens/ProfileSetupScreen';
-import BecomeProfessionalIntroScreen from '../screens/BecomeProfessionalIntroScreen';
-import WorkAreasScreen from '../screens/WorkAreasScreen';
+import BecomeProfessionalIntroScreen from '../screens/Service/BecomeProfessionalIntroScreen';
+import WorkAreasScreen from '../screens/Service/WorkAreasScreen';
 import SelectCountryScreen from '../screens/SelectCountryScreen';
-import ProfessionalProfileScreen from '../screens/ProfessionalProfileScreen';
+import ProfessionalProfileScreen from '../screens/Service/ProfessionalProfileScreen';
 import ChatConversationScreen from '../screens/ChatConversationScreen';
 import TabNavigator from './TabNavigator';
 import SearchScreen from '../screens/SearchServices/SearchScreen';
@@ -28,8 +28,19 @@ import TechIT from '../screens/SearchServices/TectIT';
 import Automobile from '../screens/SearchServices/Automobile';
 import Others from '../screens/SearchServices/Others';
 import AddAddressScreen from '../screens/AddAddress';
-import FindProfessionalsScreen from '../screens/FindProfessionals';
-import ProfessionalDetailScreen from '../screens/ProfessionalDetail';
+import FindProfessionalsScreen from '../screens/Service/FindProfessionals';
+import ProfessionalDetailScreen from '../screens/Service/ProfessionalDetail';
+import PersonalDetailsScreen from '../screens/profile/PersonalDetailsScreen';
+import EditPersonalDetailsScreen from '../screens/profile/EditPersonalDetailsScreen';
+import ShareAndEarnScreen from '../screens/profile/ShareAndEarnScreen';
+import MyCodesScreen from '../screens/profile/MyCodesScreen';
+import MyAddressesScreen from '../screens/profile/MyAddressesScreen';
+import ChooseLanguageScreen from '../screens/profile/ChooseLanguageScreen';
+import PaymentsAndRefundsScreen from '../screens/profile/PaymentsAndRefundsScreen';
+import HelpScreen from '../screens/profile/HelpScreen';
+import AboutHandynaijaScreen from '../screens/profile/AboutHandynaijaScreen';
+import HowCanWeImproveScreen from '../screens/profile/HowCanWeImproveScreen';
+import MyBookingsScreen from '../screens/profile/MyBookingsScreen';
 
 // Wrapper component with default props for initial route
 
@@ -208,6 +219,94 @@ export default function StackNavigator() {
         <Stack.Screen
           name="ProfessionalDetail"
           component={ProfessionalDetailScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="PersonalDetails"
+          component={PersonalDetailsScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="EditPersonalDetails"
+          component={EditPersonalDetailsScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="ShareAndEarn"
+          component={ShareAndEarnScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyCodes"
+          component={MyCodesScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyBookings"
+          component={MyBookingsScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyAddresses"
+          component={MyAddressesScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="ChooseLanguage"
+          component={ChooseLanguageScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsAndRefunds"
+          component={PaymentsAndRefundsScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="Help"
+          component={HelpScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="AboutHandynaija"
+          component={AboutHandynaijaScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="HowCanWeImprove"
+          component={HowCanWeImproveScreen}
           options={{
             headerShown: false,
             animation: 'slide_from_right',

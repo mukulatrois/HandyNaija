@@ -7,15 +7,15 @@ import {
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { wp, hp, scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
-import Button from '../components/Button';
-import { navigate } from '../navigation/navigationService';
-import CustomIcon, { IconNames } from '../components/Icon';
+import { wp, hp, scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
+import Button from '../../components/Button';
+import { navigate } from '../../navigation/navigationService';
+import CustomIcon, { IconNames } from '../../components/Icon';
 
 const CIRCLE = wp(28);
 
-const Circle = ({ label, image, style, imageStyle }) => (
-  <TouchableOpacity style={[styles.circle, style]}>
+const Circle = ({ label, image, style, imageStyle,onPress }) => (
+  <TouchableOpacity style={[styles.circle, style]} onPress={onPress}>
     <Image
       source={image}
       style={[styles.iconImage, imageStyle]}

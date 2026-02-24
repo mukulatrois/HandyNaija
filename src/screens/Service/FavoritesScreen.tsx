@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { navigate } from '../navigation/navigationService';
-import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
-import { Button, ScreenHeader, EmptyState, Card } from '../components';
-import CustomIcon, { IconNames } from '../components/Icon';
+import { navigate } from '../../navigation/navigationService';
+import { scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
+import { Button, ScreenHeader, EmptyState, Card } from '../../components';
+import CustomIcon, { IconNames } from '../../components/Icon';
 
 interface FavoriteCategory {
   id: string;
@@ -50,7 +50,7 @@ export default function FavoritesScreen() {
         {isEmpty ? (
           <EmptyState
             title="No favorites"
-            image={require('../Images/favourite.png')}
+            image={require('../../Images/favourite.png')}
             instruction={
               <Text style={styles.emptyInstruction}>
                 To save a professional, tap the heart icon(<CustomIcon name={IconNames.heart} size={fontSize(16)} color="#FF3B30" />)

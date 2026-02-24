@@ -3,13 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomIcon from '../components/Icon';
 import { SearchInput } from '../components';
+import { goBack } from '../navigation/navigationService';
 
 const AddAddressScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* HEADER */}
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.7}>
+        <TouchableOpacity onPress={goBack} activeOpacity={0.7}>
           <CustomIcon name="arrow-back-outline" size={26} color="#2E7D32" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Addresses</Text>

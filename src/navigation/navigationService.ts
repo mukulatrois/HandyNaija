@@ -39,6 +39,17 @@ export type RootStackParamList = {
   AddAddress: undefined;
   FindProfessionals: undefined;
   ProfessionalDetail: { professionalId: string };
+  PersonalDetails: undefined;
+  EditPersonalDetails: undefined;
+  ShareAndEarn: undefined;
+  MyCodes: undefined;
+  MyBookings: undefined;
+  MyAddresses: undefined;
+  ChooseLanguage: undefined;
+  PaymentsAndRefunds: undefined;
+  Help: undefined;
+  AboutHandynaija: undefined;
+  HowCanWeImprove: undefined;
 };
 
 /* ---------------- NAV REF ---------------- */

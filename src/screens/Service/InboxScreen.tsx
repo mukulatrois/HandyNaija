@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { fontSize } from '../utils/responsive';
-import InboxTopTabs from '../navigation/TopNavigation';
+import { fontSize } from '../../utils/responsive';
+import InboxTopTabs from '../../navigation/TopNavigation';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button, ScreenHeader } from '../components';
+import { Button, ScreenHeader } from '../../components';
 
 export default function InboxScreen() {
   const refRBSheet = useRef<any>(null);
@@ -52,7 +52,7 @@ export default function InboxScreen() {
 
         <View style={styles.content}>
           <Image
-            source={require('../Images/secure.png')}
+            source={require('../../Images/secure.png')}
             style={styles.image}
             resizeMode="contain"
           />

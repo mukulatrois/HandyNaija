@@ -11,7 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import { goBack } from "../navigation/navigationService";
+import { goBack } from "../../navigation/navigationService";
 
 export default function ProfessionalDetailScreen() {
 
@@ -60,7 +60,7 @@ export default function ProfessionalDetailScreen() {
 
                 {/* PROFILE IMAGE */}
                 <Image
-                    source={require("../Images/logo.png")}
+                    source={require("../../Images/logo.png")}
                     style={styles.mainImage}
                 />
 
@@ -110,7 +110,7 @@ export default function ProfessionalDetailScreen() {
                     {[1, 2, 3].map((_, i) => (
                         <Image
                             key={i}
-                            source={require("../Images/logo.png")}
+                            source={require("../../Images/logo.png")}
                             style={styles.photo}
                         />
                     ))}

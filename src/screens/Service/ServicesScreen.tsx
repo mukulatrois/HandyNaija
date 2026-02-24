@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
-import { Button, ScreenHeader, EmptyState } from '../components';
-import CustomIcon, { IconNames } from '../components/Icon';
+import { scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
+import { Button, ScreenHeader, EmptyState } from '../../components';
+import CustomIcon, { IconNames } from '../../components/Icon';
 
 interface Service {
   id: string;

@@ -11,14 +11,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import { goBack, navigate } from "../navigation/navigationService";
+import { goBack, navigate } from "../../navigation/navigationService";
 import {
     scale,
     fontSize,
     padding,
     margin,
     borderRadius,
-} from "../utils/responsive";
+} from "../../utils/responsive";
 
 interface DataItem {
     id: string;
@@ -74,7 +74,7 @@ export default function FindProfessionalsScreen() {
                 {/* Top Section */}
                 <View style={styles.topRow}>
                     <Image
-                        source={require("../Images/logo.png")}
+                        source={require("../../Images/logo.png")}
                         style={styles.profile}
                     />
 
@@ -158,7 +158,7 @@ export default function FindProfessionalsScreen() {
                     {[1, 2, 3, 4].map((_, i) => (
                         <Image
                             key={i}
-                            source={require("../Images/logo.png")}
+                            source={require("../../Images/logo.png")}
                             style={styles.workImage}
                         />
                     ))}
@@ -196,7 +196,7 @@ export default function FindProfessionalsScreen() {
                         {/* GUARANTEE */}
                         <View style={styles.guaranteeCard}>
                             <Image
-                                source={require("../Images/secure.png")}
+                                source={require("../../Images/secure.png")}
                                 style={styles.secureIcon}
                             />
                             <View style={{ flex: 1 }}>

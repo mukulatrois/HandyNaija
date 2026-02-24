@@ -5,10 +5,10 @@ import { StyleSheet } from 'react-native';
 import { fontSize } from '../utils/responsive';
 
 import SearchScreen from '../screens/SearchServices/SearchScreen';
-import FavoritesScreen from '../screens/FavoritesScreen';
-import ServicesScreen from '../screens/ServicesScreen';
-import InboxScreen from '../screens/InboxScreen';
-import MyAccountScreen from '../screens/MyAccountScreen';
+import FavoritesScreen from '../screens/Service/FavoritesScreen';
+import ServicesScreen from '../screens/Service/ServicesScreen';
+import InboxScreen from '../screens/Service/InboxScreen';
+import MyAccountScreen from '../screens/profile/MyAccountScreen';
 
 export type TabParamList = {
   Search: undefined;
