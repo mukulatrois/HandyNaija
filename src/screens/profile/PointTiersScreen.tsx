@@ -356,6 +356,7 @@ export default function PointTiersScreen() {
                 <Text
                   style={[
                     styles.benefitCommission,
+                    // styles.benefitCommission,
                     { color: isActive ? tierColors.border : colors.textSecondary },
                   ]}
                 >
