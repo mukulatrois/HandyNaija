@@ -28,17 +28,19 @@ import TechIT from '../screens/SearchServices/TectIT';
 import Automobile from '../screens/SearchServices/Automobile';
 import Others from '../screens/SearchServices/Others';
 import AddAddressScreen from '../screens/AddAddress';
-import RequestDetailScreen from '../screens/Provider/RequestDetailScreen';
-import UpdateEventScreen from '../screens/Provider/UpdateEventScreen';
-import PersonalDetailsScreen from '../screens/Provider/PersonalDetailsScreen';
-import EditProfileScreen from '../screens/Provider/EditProfileScreen';
-import ChangePasswordScreen from '../screens/Provider/ChangePasswordScreen';
-import MyBalanceScreen from '../screens/MyBalanceScreen';
-import CreateListingScreen from '../screens/Provider/CreateListingScreen';
-import ListingPriceScreen from '../screens/Provider/ListingPriceScreen';
-import ListingPhoneScreen from '../screens/Provider/ListingPhoneScreen';
-import ListingVerificationScreen from '../screens/Provider/ListingVerificationScreen';
-import ListingAboutMeScreen from '../screens/Provider/ListingAboutMeScreen';
+import FindProfessionalsScreen from '../screens/Service/FindProfessionals';
+import ProfessionalDetailScreen from '../screens/Service/ProfessionalDetail';
+import PersonalDetailsScreen from '../screens/profile/PersonalDetailsScreen';
+import EditPersonalDetailsScreen from '../screens/profile/EditPersonalDetailsScreen';
+import ShareAndEarnScreen from '../screens/profile/ShareAndEarnScreen';
+import MyCodesScreen from '../screens/profile/MyCodesScreen';
+import MyAddressesScreen from '../screens/profile/MyAddressesScreen';
+import ChooseLanguageScreen from '../screens/profile/ChooseLanguageScreen';
+import PaymentsAndRefundsScreen from '../screens/profile/PaymentsAndRefundsScreen';
+import HelpScreen from '../screens/profile/HelpScreen';
+import AboutHandynaijaScreen from '../screens/profile/AboutHandynaijaScreen';
+import HowCanWeImproveScreen from '../screens/profile/HowCanWeImproveScreen';
+import MyBookingsScreen from '../screens/profile/MyBookingsScreen';
 
 // Wrapper component with default props for initial route
 
@@ -271,6 +273,8 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
+          name="EditPersonalDetails"
+          component={EditPersonalDetailsScreen}
           name="ChooseLanguage"
           component={ChooseLanguageScreen}
           options={{
@@ -279,8 +283,60 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
+          name="ShareAndEarn"
+          component={ShareAndEarnScreen}
           name="PaymentsAndRefunds"
           component={PaymentsAndRefundsScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyCodes"
+          component={MyCodesScreen}
+          name="Help"
+          component={HelpScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyBookings"
+          component={MyBookingsScreen}
+          name="AboutHandynaija"
+          component={AboutHandynaijaScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="MyAddresses"
+          component={MyAddressesScreen}
+          name="HowCanWeImprove"
+          component={HowCanWeImproveScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="ChooseLanguage"
+          component={ChooseLanguageScreen}
+          name="PointTiers"
+          component={PointTiersScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsAndRefunds"
+          component={PaymentsAndRefundsScreen}
+          name="ReachSilver"
+          component={ReachSilverScreen}
           options={{
             headerShown: false,
             animation: 'slide_from_right',
@@ -297,6 +353,8 @@ export default function StackNavigator() {
         <Stack.Screen
           name="AboutHandynaija"
           component={AboutHandynaijaScreen}
+          name="ReachGold"
+          component={ReachGoldScreen}
           options={{
             headerShown: false,
             animation: 'slide_from_right',
@@ -307,27 +365,6 @@ export default function StackNavigator() {
           component={HowCanWeImproveScreen}
           options={{
             headerShown: false,
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="PointTiers"
-          component={PointTiersScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ReachSilver"
-          component={ReachSilverScreen}
-          options={{
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ReachGold"
-          component={ReachGoldScreen}
-          options={{
             animation: 'slide_from_right',
           }}
         />
