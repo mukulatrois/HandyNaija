@@ -14,8 +14,12 @@ import OTPScreen from '../screens/OTPScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ProfileSetupScreen from '../screens/ProfileSetupScreen';
 import BecomeProfessionalIntroScreen from '../screens/Service/BecomeProfessionalIntroScreen';
+import BecomeProfessionalSliderScreen from '../screens/Service/BecomeProfessionalSliderScreen';
 import WorkAreasScreen from '../screens/Service/WorkAreasScreen';
+import WorkAreasListScreen from '../screens/Service/WorkAreasListScreen';
+import WorkScheduleScreen from '../screens/Service/WorkScheduleScreen';
 import SelectCountryScreen from '../screens/SelectCountryScreen';
+import ChooseCityScreen from '../screens/ChooseCityScreen';
 import ProfessionalProfileScreen from '../screens/Service/ProfessionalProfileScreen';
 import ChatConversationScreen from '../screens/ChatConversationScreen';
 import TabNavigator from './TabNavigator';
@@ -131,12 +135,28 @@ export default function StackNavigator() {
           component={BecomeProfessionalIntroScreen}
         />
         <Stack.Screen
+          name="BecomeProfessionalSlider"
+          component={BecomeProfessionalSliderScreen}
+        />
+        <Stack.Screen
           name="WorkAreas"
           component={WorkAreasScreen}
         />
         <Stack.Screen
+          name="WorkAreasList"
+          component={WorkAreasListScreen}
+        />
+        <Stack.Screen
+          name="WorkSchedule"
+          component={WorkScheduleScreen}
+        />
+        <Stack.Screen
           name="SelectCountry"
           component={SelectCountryScreen}
+        />
+        <Stack.Screen
+          name="ChooseCity"
+          component={ChooseCityScreen}
         />
         <Stack.Screen
           name="ProfessionalProfile"

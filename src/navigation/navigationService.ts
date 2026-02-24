@@ -19,8 +19,12 @@ export type RootStackParamList = {
   ResetPassword: undefined;
   ProfileSetup: undefined;
   BecomeProfessionalIntro: undefined;
+  BecomeProfessionalSlider: undefined;
   WorkAreas: undefined;
+  WorkAreasList: undefined;
+  WorkSchedule: undefined;
   SelectCountry: undefined;
+  ChooseCity: undefined;
   MainTabs: undefined;
   ProfessionalProfile: { categoryId?: string };
   ChatConversation: { chatId?: string };

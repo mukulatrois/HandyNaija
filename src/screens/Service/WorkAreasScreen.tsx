@@ -1,75 +1,36 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const AREAS = [
-  'Ajeromi-Ifelodun',
-  'Alimosho',
-  'Kosofe',
-  'Mushin',
-  'Oshodi-Isolo',
-  'Ojo',
-  'Ikorodu',
-  'Surulere',
-];
+import { goBack, navigate } from '../../navigation/navigationService';
+import CustomIcon, { IconNames } from '../../components/Icon';
+import { scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
 
 export default function WorkAreasScreen() {
-  const [mode, setMode] = useState<'map' | 'list'>('map');
-  const [selected, setSelected] = useState<string[]>([]);
-
-  const toggleArea = (area: string) => {
-    if (selected.includes(area)) {
-      setSelected(selected.filter(a => a !== area));
-    } else {
-      setSelected([...selected, area]);
-    }
-  };
-
   return (
-    <SafeAreaView style={styles.container}>
-
+    <SafeAreaView style={styles.container} edges={['top']}>
       {/* Progress bar */}
       <View style={styles.progressBg}>
         <View style={styles.progressFill} />
       </View>
 
       {/* Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={goBack} style={styles.backButton}>
+          <CustomIcon name={IconNames.arrowBack} size={fontSize(20)} color="#3FA565" />
+        </TouchableOpacity>
+      </View>
+
       <Text style={styles.title}>Work areas</Text>
       <Text style={styles.subtitle}>
         Select the areas you can travel to in order to offer your services.
         Remember that you cannot charge an extra fee for travel
       </Text>
 
-      {/* Toggle */}
-      <View style={styles.toggle}>
-        <TouchableOpacity
-          style={[styles.toggleBtn, mode === 'map' && styles.activeBtn]}
-          onPress={() => setMode('map')}>
-          <Text style={[styles.toggleText, mode === 'map' && styles.activeText]}>
-            Map
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.toggleBtn, mode === 'list' && styles.activeBtn]}
-          onPress={() => setMode('list')}>
-          <Text style={[styles.toggleText, mode === 'list' && styles.activeText]}>
-            List
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Content */}
-      {mode === 'map' ? (
+      {/* Map with List toggle - List opens separate screen */}
+      <View style={styles.mapWrapper}>
         <MapView
-        provider="google"
+          provider="google"
           style={styles.map}
           initialRegion={{
             latitude: 6.5244,
@@ -81,34 +42,28 @@ export default function WorkAreasScreen() {
           <Marker coordinate={{ latitude: 6.53, longitude: 3.38 }} />
           <Marker coordinate={{ latitude: 6.525, longitude: 3.39 }} />
         </MapView>
-      ) : (
-        <FlatList
-          data={AREAS}
-          keyExtractor={item => item}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.row}
-              onPress={() => toggleArea(item)}>
-              <View
-                style={[
-                  styles.checkbox,
-                  selected.includes(item) && styles.checked,
-                ]}
-              />
-              <Text style={styles.areaText}>{item}</Text>
+        <View style={styles.toggleOverlay}>
+          <View style={styles.toggle}>
+            <TouchableOpacity style={[styles.toggleBtn, styles.activeBtn]}>
+              <Text style={styles.activeText}>Map</Text>
             </TouchableOpacity>
-          )}
-        />
-      )}
+            <TouchableOpacity
+              style={styles.toggleBtn}
+              onPress={() => navigate('WorkAreasList')}>
+              <Text style={styles.toggleText}>List</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
 
-      {/* Continue Button */}
+      {/* Continue Button - disabled on map; use List to select areas */}
       <TouchableOpacity
-        disabled={selected.length === 0}
-        style={[
-          styles.continueBtn,
-          selected.length === 0 && styles.disabledBtn,
-        ]}>
-        <Text style={styles.continueText}>Continue</Text>
+        disabled
+        style={[styles.continueBtn, styles.disabledBtn]}
+      >
+        <Text style={[styles.continueText, styles.continueTextDisabled]}>
+          Continue
+        </Text>
       </TouchableOpacity>
 
     </SafeAreaView>
@@ -117,112 +72,98 @@ export default function WorkAreasScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
-
   progressBg: {
     height: 6,
-    backgroundColor: '#ddd',
-    margin: 16,
+    backgroundColor: '#E0E0E0',
+    marginHorizontal: padding.xl,
+    marginTop: padding.md,
     borderRadius: 10,
   },
-
   progressFill: {
-    width: '35%',
+    width: '18%',
     height: '100%',
-    backgroundColor: '#2e9e63',
+    backgroundColor: '#3FA565',
     borderRadius: 10,
   },
-
+  header: {
+    paddingHorizontal: padding.xl,
+    paddingVertical: padding.lg,
+  },
+  backButton: {
+    width: scale(40),
+  },
   title: {
-    fontSize: 26,
-    fontWeight: '600',
-    color: '#2e9e63',
-    marginHorizontal: 16,
+    fontSize: fontSize(28),
+    fontWeight: '700',
+    color: '#3FA565',
+    marginHorizontal: padding.xl,
+    marginBottom: margin.sm,
+    textAlign: 'center',
   },
-
   subtitle: {
-    fontSize: 14,
-    color: '#444',
-    marginHorizontal: 16,
-    marginBottom: 12,
+    fontSize: fontSize(14),
+    color: '#555',
+    marginHorizontal: padding.xl,
+    marginBottom: margin.lg,
+    lineHeight: fontSize(20),
   },
-
+  mapWrapper: {
+    flex: 1,
+    marginHorizontal: padding.xl,
+    borderRadius: borderRadius.lg,
+  },
+  map: {
+    flex: 1,
+    borderRadius: borderRadius.lg,
+  },
+  toggleOverlay: {
+    position: 'absolute',
+    bottom: margin.lg,
+    left: padding.xl,
+    right: padding.xl,
+  },
   toggle: {
     flexDirection: 'row',
-    backgroundColor: '#eee',
-    margin: 16,
-    borderRadius: 25,
+    backgroundColor: '#E8E8E8',
     padding: 4,
+    borderRadius: 25,
+    marginHorizontal: padding.xl,
+    marginBottom: margin.md,
   },
-
   toggleBtn: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: padding.md,
     borderRadius: 20,
     alignItems: 'center',
   },
-
   activeBtn: {
-    backgroundColor: '#2e9e63',
+    backgroundColor: '#3FA565',
   },
-
   toggleText: {
-    fontSize: 14,
+    fontSize: fontSize(14),
     color: '#555',
   },
-
   activeText: {
     color: '#fff',
     fontWeight: '600',
   },
 
-  map: {
-    flex: 1,
-    marginHorizontal: 16,
-    borderRadius: 12,
-  },
-
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderColor: '#eee',
-  },
-
-  checkbox: {
-    width: 22,
-    height: 22,
-    borderRadius: 6,
-    borderWidth: 2,
-    borderColor: '#ccc',
-    marginRight: 12,
-  },
-
-  checked: {
-    backgroundColor: '#2e9e63',
-    borderColor: '#2e9e63',
-  },
-
-  areaText: {
-    fontSize: 16,
-    color: '#333',
-  },
-
   continueBtn: {
-    backgroundColor: '#2e9e63',
-    margin: 16,
-    padding: 16,
-    borderRadius: 10,
+    backgroundColor: '#3FA565',
+    margin: padding.xl,
+    padding: padding.lg,
+    borderRadius: borderRadius.lg,
     alignItems: 'center',
   },
-
   disabledBtn: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#E0E0E0',
   },
-
   continueText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: fontSize(16),
     fontWeight: '600',
+  },
+  continueTextDisabled: {
+    color: '#888',
   },
 });

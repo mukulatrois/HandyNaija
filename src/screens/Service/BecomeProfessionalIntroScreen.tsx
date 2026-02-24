@@ -1,144 +1,42 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { goBack } from '../../navigation/navigationService';
+import { goBack, navigate } from '../../navigation/navigationService';
 import { scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
 import { Button } from '../../components';
 import CustomIcon, { IconNames } from '../../components/Icon';
 
-const TOTAL_STEPS = 5;
-
-const STEPS = [
-  {
-    id: 0,
-    title: 'Want to offer your services on HandyNaija?',
-    subtitle: 'Create your professional profile and start earning money',
-    titleAlign: 'center' as const,
-    subtitleAlign: 'center' as const,
-    buttonText: 'Become a professional',
-    showDots: false,
-  },
-  {
-    id: 1,
-    title: 'Offer your at-home services',
-    subtitle: "Let us know where you can travel to, when you're available, and what services you want to offer.",
-    titleAlign: 'left' as const,
-    subtitleAlign: 'left' as const,
-    buttonText: 'Next',
-    showDots: true,
-    activeDot: 1,
-  },
-  {
-    id: 2,
-    title: 'Perform the services',
-    subtitle: 'Complete the services for which you have been booked.',
-    titleAlign: 'center' as const,
-    subtitleAlign: 'center' as const,
-    buttonText: 'Next',
-    showDots: true,
-    activeDot: 2,
-  },
-  {
-    id: 3,
-    title: 'Get Customers',
-    subtitle: 'Service requests for customers or actively apply for job leads.',
-    titleAlign: 'left' as const,
-    subtitleAlign: 'left' as const,
-    buttonText: 'Next',
-    showDots: true,
-    activeDot: 3,
-  },
-  {
-    id: 4,
-    title: 'Earn money',
-    subtitle: 'Receive the payment for the services you have provided on your account.',
-    titleAlign: 'center' as const,
-    subtitleAlign: 'center' as const,
-    buttonText: 'Next',
-    showDots: true,
-    activeDot: 4,
-  },
-];
-
 export default function BecomeProfessionalIntroScreen() {
-  const [step, setStep] = useState(0);
-
-  const handleNext = () => {
-    if (step < TOTAL_STEPS - 1) {
-      setStep(step + 1);
-    } else {
-      goBack();
-    }
-  };
-
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       {/* Header */}
       <View style={styles.header}>
-        {step === 0 ? (
-          <>
-            <TouchableOpacity onPress={goBack} style={styles.backRow}>
-              <CustomIcon name={IconNames.arrowBack} size={fontSize(20)} color="#000" />
-              <Text style={styles.profileLink}>Profile</Text>
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>Become a professional</Text>
-          </>
-        ) : (
-          <>
-            <View style={styles.headerSpacer} />
-            <TouchableOpacity onPress={goBack}>
-              <Text style={styles.exitText}>Exit</Text>
-            </TouchableOpacity>
-          </>
-        )}
+        <TouchableOpacity onPress={goBack} style={styles.backRow}>
+          <CustomIcon name={IconNames.arrowBack} size={fontSize(20)} color="#3FA565" />
+          <Text style={styles.profileLink}>Profile</Text>
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Become a professional</Text>
       </View>
 
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
+      <View style={styles.content}>
+        <Text style={styles.title}>Want to offer your services on HandyNaija?</Text>
+        <Text style={styles.subtitle}>
+          Create your professional profile and start earning money
+        </Text>
+
+        {/* Illustration placeholder - replace with actual asset when available */}
         <View style={styles.illustrationPlaceholder}>
           <Text style={styles.illustrationHint}>Illustration</Text>
         </View>
 
-        <Text
-          style={[
-            styles.title,
-            STEPS[step].titleAlign === 'left' && styles.titleLeft,
-          ]}
-        >
-          {STEPS[step].title}
-        </Text>
-        <Text
-          style={[
-            styles.subtitle,
-            STEPS[step].subtitleAlign === 'left' && styles.subtitleLeft,
-          ]}
-        >
-          {STEPS[step].subtitle}
-        </Text>
-
-        {STEPS[step].showDots && (
-          <View style={styles.dotsRow}>
-            {Array.from({ length: 4 }).map((_, i) => (
-              <View
-                key={i}
-                style={[
-                  styles.dot,
-                  i + 1 === STEPS[step].activeDot && styles.dotActive,
-                ]}
-              />
-            ))}
-          </View>
-        )}
-
-        <Button
-          title={STEPS[step].buttonText}
-          onPress={handleNext}
-          variant="primary"
-          style={step === 0 ? { marginTop: 0 } : { marginTop: margin.lg }}
-        />
-      </ScrollView>
+        <View style={styles.bottomButton}>
+          <Button
+            title="Become a professional"
+            onPress={() => navigate('BecomeProfessionalSlider')}
+            variant="primary"
+          />
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -160,11 +58,7 @@ const styles = StyleSheet.create({
   backRow: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  backArrow: {
-    fontSize: fontSize(20),
-    color: '#3FA565',
-    marginRight: padding.sm,
+    gap: padding.sm,
   },
   profileLink: {
     fontSize: fontSize(16),
@@ -176,18 +70,28 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '600',
   },
-  headerSpacer: { flex: 1 },
-  exitText: {
-    fontSize: fontSize(16),
-    color: '#3FA565',
-    fontWeight: '600',
-  },
-  scrollContent: {
+  content: {
+    flex: 1,
     padding: padding.xl,
-    paddingBottom: margin.xxxl,
+  },
+  title: {
+    fontSize: fontSize(28),
+    fontWeight: '700',
+    color: '#1B3556',
+    marginBottom: margin.md,
+    textAlign: 'center',
+    lineHeight: fontSize(34),
+  },
+  subtitle: {
+    fontSize: fontSize(16),
+    color: '#555',
+    lineHeight: fontSize(22),
+    marginBottom: margin.xxl,
+    textAlign: 'center',
   },
   illustrationPlaceholder: {
-    height: scale(200),
+    flex: 1,
+    minHeight: scale(200),
     backgroundColor: '#F5F5F5',
     borderRadius: borderRadius.lg,
     justifyContent: 'center',
@@ -198,44 +102,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize(14),
     color: '#999',
   },
-  title: {
-    fontSize: fontSize(24),
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: margin.md,
-    textAlign: 'center',
-    paddingHorizontal: padding.lg,
-  },
-  titleLeft: {
-    textAlign: 'left',
-    paddingHorizontal: 0,
-  },
-  subtitle: {
-    fontSize: fontSize(16),
-    color: '#000',
-    lineHeight: fontSize(22),
-    marginBottom: margin.xxl,
-    textAlign: 'center',
-    paddingHorizontal: padding.lg,
-  },
-  subtitleLeft: {
-    textAlign: 'left',
-    paddingHorizontal: 0,
-  },
-  dotsRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: margin.xxl,
-    gap: scale(8),
-  },
-  dot: {
-    width: scale(8),
-    height: scale(8),
-    borderRadius: scale(4),
-    backgroundColor: '#E0E0E0',
-  },
-  dotActive: {
-    backgroundColor: '#3FA565',
+  bottomButton: {
+    marginTop: 'auto',
   },
 });

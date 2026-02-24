@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { navigate, goBack } from '../navigation/navigationService';
 import { scale, fontSize, padding, margin, borderRadius } from '../utils/responsive';
 import CustomIcon, { IconNames } from '../components/Icon';
+import { Button } from '../components';
 
 export default function RoleSelectScreen() {
 
@@ -17,7 +18,7 @@ export default function RoleSelectScreen() {
       </TouchableOpacity>
 
       <Text style={styles.title}>
-        What will you do on HandyNaija?
+        What will you do on{'\n'}HandyNaija?
       </Text>
 
       <Text style={styles.subtitle}>
@@ -27,11 +28,8 @@ export default function RoleSelectScreen() {
       {/* Client card */}
       <TouchableOpacity
         style={[styles.card, selected === 'client' && styles.activeCard]}
-        onPress={() => {
-          setSelected('client');
-          navigate('CreateNewAccount');
-        }}>
-
+        onPress={() => setSelected('client')}
+      >
         <Image
           source={require('../Images/logo.png')}
           style={styles.img}
@@ -46,11 +44,8 @@ export default function RoleSelectScreen() {
       {/* Pro card */}
       <TouchableOpacity
         style={[styles.card, selected === 'pro' && styles.activeCard]}
-        onPress={() => {
-          setSelected('pro');
-          navigate('BecomeProfessionalIntro');
-        }}>
-
+        onPress={() => setSelected('pro')}
+      >
         <Image
           source={require('../Images/logo.png')}
           style={styles.img}
@@ -61,6 +56,17 @@ export default function RoleSelectScreen() {
           <Text style={styles.small}>(I'm a Professional)</Text>
         </View>
       </TouchableOpacity>
+
+      <View style={styles.bottomButton}>
+        <Button
+          title="Continue"
+          onPress={() => {
+            if (selected === 'client') navigate('CreateNewAccount');
+            if (selected === 'pro') navigate('BecomeProfessionalIntro');
+          }}
+          disabled={!selected}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: padding.xl,
-    backgroundColor: '#F7F7F7', // soft grey like screenshot
+    backgroundColor: 'white', // soft grey like screenshot
   },
 
   backButton: {
@@ -79,14 +85,14 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: fontSize(24),
+    fontSize: fontSize(28),
     fontWeight: '700',
     marginBottom: margin.md,
     color: '#1B3556', // navy blue
   },
 
   subtitle: {
-    fontSize: fontSize(14),
+    fontSize: fontSize(16),
     color: '#555',
     marginBottom: margin.xxl,
     lineHeight: fontSize(20),
@@ -127,5 +133,9 @@ const styles = StyleSheet.create({
   small: {
     color: '#333',
     fontSize: fontSize(14),
+  },
+
+  bottomButton: {
+    marginTop: 'auto',
   },
 });
