@@ -16,19 +16,19 @@ interface FavoriteCategory {
 
 export default function FavoritesScreen() {
   const [favorites, setFavorites] = useState<FavoriteCategory[]>([
-    // {
-    //   id: '1',
-    //   name: 'Handyman',
-    //   icon: '🔧',
-    //   professionalCount: 1,
-    // },
-    // {
-    //   id: '2',
-    //   name: 'Cleaning',
-    //   icon: '🧹',
-    //   professionalCount: 4,
-    //   professionalAvatars: ['👤', '👤', '👤', '👤'],
-    // },
+    {
+      id: '1',
+      name: 'Handyman',
+      icon: '🔧',
+      professionalCount: 1,
+    },
+    {
+      id: '2',
+      name: 'Cleaning',
+      icon: '🧹',
+      professionalCount: 4,
+      professionalAvatars: ['👤', '👤', '👤', '👤'],
+    },
   ]);
 
   const isEmpty = favorites.length === 0;
