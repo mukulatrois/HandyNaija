@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput as RNTextInput, TouchableOpacity, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { fontSize, padding, margin, borderRadius } from '../utils/responsive';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 interface PasswordInputProps {
   label?: string;
@@ -37,9 +39,12 @@ export default function PasswordInput({
           style={styles.eyeIcon}
           onPress={() => setShowPassword(!showPassword)}
         >
-          <Text style={styles.eyeIconText}>
-            {showPassword ? '👁️' : '👁️‍🗨️'}
-          </Text>
+          <Icon
+  name={showPassword ? 'eye' : 'eye-slash'}
+  size={20}
+  color="#666"
+/>
+
         </TouchableOpacity>
       </View>
     </View>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ViewStyle } from 'react-native';
 import { fontSize, padding, borderRadius, margin } from '../utils/responsive';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export type SocialProvider = 'apple' | 'facebook' | 'google';
 
@@ -14,19 +15,19 @@ const SOCIAL_CONFIG = {
   apple: {
     backgroundColor: '#000',
     textColor: '#fff',
-    icon: '🍎',
+    icon: 'apple',
     text: 'Continue with Apple',
   },
   facebook: {
     backgroundColor: '#1877F2',
     textColor: '#fff',
-    icon: 'f',
+    icon: 'facebook',
     text: 'Continue with Facebook',
   },
   google: {
     backgroundColor: '#fff',
     textColor: '#000',
-    icon: 'G',
+    icon: 'google',
     text: 'Continue with Google',
     border: true,
   },
@@ -44,13 +45,19 @@ export default function SocialButton({
       style={[
         styles.button,
         { backgroundColor: config.backgroundColor },
-        config.border && styles.border,
+        styles.border,
         style,
       ]}
       onPress={onPress}
       activeOpacity={0.7}
     >
-      <Text style={styles.icon}>{config.icon}</Text>
+      <Icon
+        name={config.icon}
+        size={22}
+        color={config.textColor}
+        style={styles.icon}
+      />
+
       <Text style={[styles.text, { color: config.textColor }]}>
         {config.text}
       </Text>
@@ -68,7 +75,7 @@ const styles = StyleSheet.create({
     marginBottom: margin.md,
   },
   border: {
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: '#E0E0E0',
   },
   icon: {

@@ -5,6 +5,7 @@ import { borderRadius, fontSize, margin, padding } from '../utils/responsive';
 import EmailLoginScreen, { LoginEmailHandle } from './EmailLoginScreen';
 import { HandleBar, CloseButton, Separator, SocialButton, Button } from '../components';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { googleLogin } from '../GFALogins/googleLogin';
 export type LoginSheetHandle = {
   open: () => void;
   close: () => void;
@@ -14,14 +15,15 @@ const LoginSheet = forwardRef<LoginSheetHandle, {}>((_, ref) => {
   const refRBSheet = useRef<any>(null);
   const loginRef = useRef<LoginEmailHandle>(null);
 
+
   useImperativeHandle(ref, () => ({
     open: () => refRBSheet.current?.open(),
     close: () => refRBSheet.current?.close(),
   }));
 
-   useEffect(() => {
+  useEffect(() => {
     GoogleSignin.configure({
-      webClientId: 'YOUR_WEB_CLIENT_ID',
+      webClientId: '783142289414-ehsu08vtfra5ol5f67tq9obtmoq9qt90.apps.googleusercontent.com',
     });
   }, []);
 
@@ -42,15 +44,18 @@ const LoginSheet = forwardRef<LoginSheetHandle, {}>((_, ref) => {
           <CloseButton onPress={() => refRBSheet.current?.close()} />
         </View>
 
-        <SocialButton provider="apple" onPress={() => {}} />
-        <SocialButton provider="facebook" onPress={() => {}} />
-        <SocialButton provider="google" onPress={() => {}} />
+        <SocialButton provider="apple" onPress={() => { }} />
+        <SocialButton provider="facebook" onPress={() => { }} />
+        <SocialButton provider="google" onPress={googleLogin} />
 
         <Separator />
 
         <Button
           title="Log in with email"
-          onPress={() => loginRef.current?.open()}
+          onPress={() => {
+            refRBSheet.current?.close();
+            loginRef.current?.open();
+          }}
           variant="primary"
         />
 

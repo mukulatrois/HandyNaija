@@ -9,6 +9,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { wp, scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
 import { goBack } from '../../navigation/navigationService';
+import CustomIcon, { IconNames } from '../../components/Icon';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const CIRCLE = wp(28);
@@ -49,15 +50,20 @@ const CategoryLayout = ({ title, items, layout = 'grid' }: CategoryLayoutProps) 
     // 🔥 chunk into rows of 3
     const rows = chunkArray(items, 3);
 
+console.log(items);
     return (
         <SafeAreaView style={styles.container}>
             {/* HEADER */}
             <View style={styles.header}>
                 <Text style={styles.brand}>HandyNaija</Text>
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={styles.headerBtn}><Text>🔍</Text></View>
-                    <View style={styles.headerBtn}><Text>🔔</Text></View>
-                </View>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity style={styles.headerBtn}>
+            <CustomIcon name={IconNames.search} size={fontSize(18)} color="#000" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.headerBtn}>
+            <CustomIcon name={IconNames.notifications} size={fontSize(18)} color="#000" />
+          </TouchableOpacity>
+        </View>
             </View>
 
 

@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { navigate } from '../navigation/navigationService';
 import { scale, fontSize, padding, margin } from '../utils/responsive';
 import { Button, TextInput as CustomTextInput, PasswordInput, Separator, SocialButton, FooterLink } from '../components';
 
 export default function CreateNewAccountScreen() {
-  const [fullName, setFullName] = useState('Festus Okonkwo');
-  const [email, setEmail] = useState('you@gmail.com');
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView 
+      <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <Image
+          source={require('../Images/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
         <Text style={styles.title}>Create New Account</Text>
         <Text style={styles.subtitle}>Please sign up to your account</Text>
-
-        <Button
-          title="Sign up with Phone"
-          onPress={() => navigate('PhoneSignup')}
-          variant="secondary"
-          style={{ marginBottom: margin.lg }}
-        />
 
         <CustomTextInput
           label="Full Name"
@@ -37,7 +35,7 @@ export default function CreateNewAccountScreen() {
 
         <CustomTextInput
           label="Email Address"
-          placeholder="you@gmail.com"
+          placeholder="email@gmail.com"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -62,18 +60,17 @@ export default function CreateNewAccountScreen() {
         <Button
           title="Create New Account"
           onPress={() => {
-            // After successful signup, navigate to profile setup
-            navigate('ProfileSetup');
+            navigate('MainTabs');
           }}
           variant="primary"
-          style={{ marginTop: margin.lg, marginBottom: margin.xxl }}
+          style={{ marginTop: margin.lg}}
         />
 
         <Separator />
 
-        <SocialButton provider="facebook" onPress={() => {}} />
-        <SocialButton provider="google" onPress={() => {}} />
-        <SocialButton provider="apple" onPress={() => {}} />
+        <SocialButton provider="facebook" onPress={() => { }} />
+        <SocialButton provider="google" onPress={() => { }} />
+        <SocialButton provider="apple" onPress={() => { }} />
 
         <FooterLink
           text="Already have an account?"
@@ -92,7 +89,11 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: padding.xl,
-    paddingTop: scale(40),
+  },
+  logo: {
+    width: scale(180),
+    height: scale(180),
+    alignSelf: 'center',
   },
   title: {
     fontSize: fontSize(28),

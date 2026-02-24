@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   handle: {
     width: scale(40),
     height: scale(4),
-    // backgroundColor: '#D1D1D1',e ui bnado
+    backgroundColor: '#D1D1D1',
     borderRadius: borderRadius.sm,
     alignSelf: 'center',
     marginBottom: scale(20),

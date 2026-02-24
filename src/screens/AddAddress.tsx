@@ -1,22 +1,17 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import CustomIcon from '../components/Icon';
+import { SearchInput } from '../components';
+import { goBack } from '../navigation/navigationService';
 
 const AddAddressScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-
       {/* HEADER */}
       <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="arrow-back-outline" size={26} color="#2E7D32" />
+        <TouchableOpacity onPress={goBack} activeOpacity={0.7}>
+          <CustomIcon name="arrow-back-outline" size={26} color="#2E7D32" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Addresses</Text>
       </View>
@@ -27,21 +22,13 @@ const AddAddressScreen = () => {
       </Text>
 
       {/* SEARCH INPUT */}
-      <View style={styles.inputBox}>
-        <Ionicons name="search-outline" size={22} color="#777" />
-        <TextInput
-          placeholder="Street name and number..."
-          placeholderTextColor="#777"
-          style={styles.input}
-        />
-      </View>
+      <SearchInput placeholder="Street name and number..." style={styles.searchInput} />
 
       {/* CURRENT LOCATION BUTTON */}
-      <TouchableOpacity style={styles.locationBtn}>
-        <Ionicons name="locate-outline" size={22} color="#333" />
+      <TouchableOpacity style={styles.locationBtn} activeOpacity={0.7}>
+        <CustomIcon name="locate-outline" size={22} color="#333" />
         <Text style={styles.locationText}>Use Current Location</Text>
       </TouchableOpacity>
-
     </SafeAreaView>
   );
 };
@@ -75,23 +62,8 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
 
-  inputBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1.5,
-    borderColor: '#999',
-    borderRadius: 14,
-    paddingHorizontal: 15,
-    height: 60,
+  searchInput: {
     marginBottom: 20,
-    backgroundColor: '#fff',
-  },
-
-  input: {
-    flex: 1,
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#000',
   },
 
   locationBtn: {

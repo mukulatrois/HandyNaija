@@ -4,10 +4,6 @@ import {
   createNavigationContainerRef,
 } from '@react-navigation/native';
 
-/* ---------------- EXPORTS ---------------- */
-
-export { CommonActions, StackActions };
-
 /* ---------------- ROUTE TYPES ---------------- */
 
 export type RootStackParamList = {
@@ -26,7 +22,6 @@ export type RootStackParamList = {
   WorkAreas: undefined;
   SelectCountry: undefined;
   MainTabs: undefined;
-  ProviderTabs: undefined;
   ProfessionalProfile: { categoryId?: string };
   ChatConversation: { chatId?: string };
   Search: undefined;
@@ -42,19 +37,8 @@ export type RootStackParamList = {
   RepairMaintenance: undefined;
   Automobile: undefined;
   AddAddress: undefined;
-  RequestDetail: {
-    requestId: string;
-    name?: string;
-    avatar?: string;
-    price?: string;
-    date?: string;
-    time?: string;
-    services?: string;
-    email?: string;
-    phone?: string;
-    location?: string;
-  };
-  UpdateEvent: undefined;
+  FindProfessionals: undefined;
+  ProfessionalDetail: { professionalId: string };
   PersonalDetails: undefined;
   EditProfile: undefined;
   ChangePassword: undefined;
@@ -64,9 +48,6 @@ export type RootStackParamList = {
   ListingPhone: undefined;
   ListingVerification: undefined;
   ListingAboutMe: undefined;
-  PointTiers: undefined;
-  ReachSilver: undefined;
-  ReachGold: undefined;
 };
 
 /* ---------------- NAV REF ---------------- */

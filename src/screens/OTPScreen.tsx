@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { navigate } from '../navigation/navigationService';
@@ -54,6 +54,11 @@ export default function OTPScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <Image
+                  source={require('../Images/logo.png')}
+                  style={styles.logo}
+                  resizeMode="contain"
+                />
         <Text style={styles.title}>OTP Verification</Text>
         <Text style={styles.subtitle}>
           {type === 'phone' 
@@ -109,6 +114,11 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: padding.xl,
     paddingTop: scale(40),
+  },
+  logo: {
+    width: scale(180),
+    height: scale(180),
+    alignSelf: 'center',
   },
   title: {
     fontSize: fontSize(28),

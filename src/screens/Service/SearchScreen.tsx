@@ -14,30 +14,16 @@ import CustomIcon, { IconNames } from '../../components/Icon';
 
 const CIRCLE = wp(28);
 
-interface CircleProps {
-  label: string;
-  image: any;
-  style?: any;
-  imageStyle?: any;
-  onPress?: () => void;
-}
-
-const Circle = ({ label, image, style, imageStyle, onPress }: CircleProps) => {
-  const finalImageStyle = imageStyle && Object.keys(imageStyle).length > 0 
-    ? [styles.iconImage, imageStyle] 
-    : styles.iconImage;
-
-  return (
-    <TouchableOpacity style={[styles.circle, style]} onPress={onPress}>
-      <Image
-        source={image}
-        style={finalImageStyle}
-        resizeMode="contain"
-      />
-      <Text style={styles.text}>{label}</Text>
-    </TouchableOpacity>
-  );
-};
+const Circle = ({ label, image, style, imageStyle,onPress }) => (
+  <TouchableOpacity style={[styles.circle, style]} onPress={onPress}>
+    <Image
+      source={image}
+      style={[styles.iconImage, imageStyle]}
+      resizeMode="contain"
+    />
+    <Text style={styles.text}>{label}</Text>
+  </TouchableOpacity>
+);
 
 export default function HandyNaijaScreen() {
   return (
@@ -60,7 +46,7 @@ export default function HandyNaijaScreen() {
         <View style={styles.diagonal} />
       {/* LEFT COLUMN */}
       <Circle
-        image={require('../../Images/serachImg/Home.png')}
+        image={require('../Images/serachImg/Home.png')}
         imageStyle={{ width: CIRCLE * 0.65, height: CIRCLE * 0.45 }}
         label="Home"
         style={{ top: '22%', left: '6%' }}
@@ -68,14 +54,15 @@ export default function HandyNaijaScreen() {
       />
 
       <Circle
-        image={require('../../Images/serachImg/Beauty.png')}
+        image={require('../Images/serachImg/Beauty.png')}
+        imageStyle={{}}
         label="Beauty"
         style={{ top: '43%', left: '6%' }}
         onPress={() => navigate('Beauty' as any)}
       />
 
       <Circle
-        image={require('../../Images/serachImg/media.png')}
+        image={require('../Images/serachImg/media.png')}
         imageStyle={{ width: CIRCLE * 0.65, height: CIRCLE * 0.45 }}
         label="Media & Events"
         style={{ top: '64%', left: '6%' }}
@@ -84,14 +71,15 @@ export default function HandyNaijaScreen() {
 
       {/* RIGHT COLUMN */}
       <Circle
-        image={require('../../Images/serachImg/Tech.png')}
+        image={require('../Images/serachImg/Tech.png')}
+        imageStyle={{}}
         label="Tech & IT Support"
         style={{ top: '22%', right: '6%' }}
         onPress={() => navigate('TechIT' as any)}
       />
 
       <Circle
-        image={require('../../Images/serachImg/Automobile.png')}
+        image={require('../Images/serachImg/Automobile.png')}
         imageStyle={{ width: CIRCLE * 0.65, height: CIRCLE * 0.45 }}
         label="Automobile"
         style={{ top: '43%', right: '6%' }}
@@ -99,7 +87,7 @@ export default function HandyNaijaScreen() {
       />
 
       <Circle
-        image={require('../../Images/serachImg/Others.png')}
+        image={require('../Images/serachImg/Others.png')}
         imageStyle={{ width: CIRCLE * 0.65, height: CIRCLE * 0.45 }}
         label="Others"
         style={{ top: '64%', right: '6%' }}
@@ -108,7 +96,7 @@ export default function HandyNaijaScreen() {
 
       {/* CENTER */}
       <Circle
-        image={require('../../Images/serachImg/repair.png')}
+        image={require('../Images/serachImg/repair.png')}
         imageStyle={{ width: CIRCLE * 0.65, height: CIRCLE * 0.30 }}
         label="Repair & Maintenance"
         style={{ top: '44%', alignSelf: 'center' }}
@@ -118,7 +106,7 @@ export default function HandyNaijaScreen() {
       {/* ADD ADDRESS BUTTON */}
       <View style={styles.addBtnWrapper}>
         <Button
-          title="＋ Add address"
+          title="Add address"
           onPress={() => { }}
           variant="primary"
           style={styles.addBtn}
@@ -211,8 +199,6 @@ const styles = StyleSheet.create({
     width: CIRCLE * 0.38,
     height: CIRCLE * 0.38,
     marginBottom: margin.sm,
-    minWidth: scale(20),
-    minHeight: scale(20),
   },
 
   text: {

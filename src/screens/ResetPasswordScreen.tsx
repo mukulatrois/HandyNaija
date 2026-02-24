@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { scale, fontSize, padding, margin } from '../utils/responsive';
 import { PasswordInput, Button } from '../components';
@@ -10,10 +10,15 @@ export default function ResetPasswordScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView 
+      <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <Image
+          source={require('../Images/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
         <Text style={styles.title}>Reset Password</Text>
 
         <PasswordInput
@@ -32,7 +37,7 @@ export default function ResetPasswordScreen() {
 
         <Button
           title="Continue"
-          onPress={() => {}}
+          onPress={() => { }}
           variant="primary"
           style={{ marginTop: padding.sm, marginBottom: scale(40) }}
         />
@@ -49,6 +54,11 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: padding.xl,
     paddingTop: scale(40),
+  },
+  logo: {
+    width: scale(180),
+    height: scale(180),
+    alignSelf: 'center',
   },
   title: {
     fontSize: fontSize(28),

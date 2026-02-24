@@ -13,13 +13,12 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import OTPScreen from '../screens/OTPScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ProfileSetupScreen from '../screens/ProfileSetupScreen';
-import BecomeProfessionalIntroScreen from '../screens/BecomeProfessionalIntroScreen';
-import WorkAreasScreen from '../screens/WorkAreasScreen';
+import BecomeProfessionalIntroScreen from '../screens/Service/BecomeProfessionalIntroScreen';
+import WorkAreasScreen from '../screens/Service/WorkAreasScreen';
 import SelectCountryScreen from '../screens/SelectCountryScreen';
-import ProfessionalProfileScreen from '../screens/ProfessionalProfileScreen';
+import ProfessionalProfileScreen from '../screens/Service/ProfessionalProfileScreen';
 import ChatConversationScreen from '../screens/ChatConversationScreen';
 import TabNavigator from './TabNavigator';
-import ProviderTabNavigator from './ProviderTabNavigator';
 import SearchScreen from '../screens/SearchServices/SearchScreen';
 import RepairMaintenance from '../screens/SearchServices/RepairMaintenance';
 import Home from '../screens/SearchServices/Home';
@@ -40,9 +39,6 @@ import ListingPriceScreen from '../screens/Provider/ListingPriceScreen';
 import ListingPhoneScreen from '../screens/Provider/ListingPhoneScreen';
 import ListingVerificationScreen from '../screens/Provider/ListingVerificationScreen';
 import ListingAboutMeScreen from '../screens/Provider/ListingAboutMeScreen';
-import PointTiersScreen from '../screens/Provider/PointTiersScreen';
-import ReachSilverScreen from '../screens/Provider/ReachSilverScreen';
-import ReachGoldScreen from '../screens/Provider/ReachGoldScreen';
 
 // Wrapper component with default props for initial route
 
@@ -56,7 +52,7 @@ export default function StackNavigator() {
           headerShown: false,
           animation: 'slide_from_right',
         }}
-        initialRouteName='ProviderTabs'
+        initialRouteName='Splash'
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Splash" component={SplashScreen} />
@@ -123,14 +119,6 @@ export default function StackNavigator() {
         <Stack.Screen
           name="MainTabs"
           component={TabNavigator}
-          options={{
-            headerShown: false,
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="ProviderTabs"
-          component={ProviderTabNavigator}
           options={{
             headerShown: false,
             animation: 'slide_from_right',
@@ -219,16 +207,18 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
-          name="RequestDetail"
-          component={RequestDetailScreen}
+          name="FindProfessionals"
+          component={FindProfessionalsScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="UpdateEvent"
-          component={UpdateEventScreen}
+          name="ProfessionalDetail"
+          component={ProfessionalDetailScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
@@ -236,62 +226,87 @@ export default function StackNavigator() {
           name="PersonalDetails"
           component={PersonalDetailsScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="EditProfile"
-          component={EditProfileScreen}
+          name="EditPersonalDetails"
+          component={EditPersonalDetailsScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="ChangePassword"
-          component={ChangePasswordScreen}
+          name="ShareAndEarn"
+          component={ShareAndEarnScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="MyBalance"
-          component={MyBalanceScreen}
+          name="MyCodes"
+          component={MyCodesScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="CreateListing"
-          component={CreateListingScreen}
+          name="MyBookings"
+          component={MyBookingsScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="ListingPrice"
-          component={ListingPriceScreen}
+          name="MyAddresses"
+          component={MyAddressesScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="ListingPhone"
-          component={ListingPhoneScreen}
+          name="ChooseLanguage"
+          component={ChooseLanguageScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="ListingVerification"
-          component={ListingVerificationScreen}
+          name="PaymentsAndRefunds"
+          component={PaymentsAndRefundsScreen}
           options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
-          name="ListingAboutMe"
-          component={ListingAboutMeScreen}
+          name="Help"
+          component={HelpScreen}
           options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="AboutHandynaija"
+          component={AboutHandynaijaScreen}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="HowCanWeImprove"
+          component={HowCanWeImproveScreen}
+          options={{
+            headerShown: false,
             animation: 'slide_from_right',
           }}
         />
