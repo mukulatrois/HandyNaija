@@ -60,10 +60,14 @@ export default function PListings() {
           <View style={styles.listingContent}>
             <Text style={styles.listingTitle}>Ironing</Text>
             <Text style={styles.listingSubtext}>Listing visible</Text>
-            <View style={styles.bronzeTag}>
+            <TouchableOpacity
+              style={styles.bronzeTag}
+              activeOpacity={0.7}
+              onPress={() => navigate('PointTiers')}
+            >
               <Icon name="medal-outline" size={scale(14)} color="#B45309" />
               <Text style={styles.bronzeText}>Bronze</Text>
-            </View>
+            </TouchableOpacity>
           </View>
           <Icon
             name="chevron-forward"

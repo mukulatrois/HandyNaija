@@ -40,6 +40,9 @@ import ListingPriceScreen from '../screens/Provider/ListingPriceScreen';
 import ListingPhoneScreen from '../screens/Provider/ListingPhoneScreen';
 import ListingVerificationScreen from '../screens/Provider/ListingVerificationScreen';
 import ListingAboutMeScreen from '../screens/Provider/ListingAboutMeScreen';
+import PointTiersScreen from '../screens/Provider/PointTiersScreen';
+import ReachSilverScreen from '../screens/Provider/ReachSilverScreen';
+import ReachGoldScreen from '../screens/Provider/ReachGoldScreen';
 
 // Wrapper component with default props for initial route
 
@@ -288,6 +291,27 @@ export default function StackNavigator() {
         <Stack.Screen
           name="ListingAboutMe"
           component={ListingAboutMeScreen}
+          options={{
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="PointTiers"
+          component={PointTiersScreen}
+          options={{
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="ReachSilver"
+          component={ReachSilverScreen}
+          options={{
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="ReachGold"
+          component={ReachGoldScreen}
           options={{
             animation: 'slide_from_right',
           }}

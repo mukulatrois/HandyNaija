@@ -64,6 +64,9 @@ export type RootStackParamList = {
   ListingPhone: undefined;
   ListingVerification: undefined;
   ListingAboutMe: undefined;
+  PointTiers: undefined;
+  ReachSilver: undefined;
+  ReachGold: undefined;
 };
 
 /* ---------------- NAV REF ---------------- */
