@@ -5,6 +5,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ImageSourcePropType,
+  ViewStyle,
+  ImageStyle,
+  GestureResponderEvent,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { wp, hp, scale, fontSize, padding, margin, borderRadius } from '../../utils/responsive';
@@ -14,7 +18,15 @@ import CustomIcon, { IconNames } from '../../components/Icon';
 
 const CIRCLE = wp(28);
 
-const Circle = ({ label, image, style, imageStyle,onPress }) => (
+interface CircleProps {
+  label: string;
+  image: ImageSourcePropType;
+  style?: ViewStyle;
+  imageStyle?: ImageStyle;
+  onPress?: (event: GestureResponderEvent) => void;
+}
+
+const Circle = ({ label, image, style, imageStyle, onPress }: CircleProps) => (
   <TouchableOpacity style={[styles.circle, style]} onPress={onPress}>
     <Image
       source={image}

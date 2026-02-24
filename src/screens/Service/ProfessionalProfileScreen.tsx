@@ -149,10 +149,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   backText: {
     fontSize: fontSize(16),
     color: '#000',
@@ -287,17 +283,6 @@ const styles = StyleSheet.create({
     paddingVertical: padding.sm,
     borderRadius: borderRadius.md,
     minWidth: scale(120),
-  },
-  infoButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#F5F5F5',
-    paddingHorizontal: padding.md,
-    paddingVertical: padding.sm,
-    borderRadius: borderRadius.md,
-    minWidth: scale(120),
-    marginRight: margin.sm,
-    marginBottom: margin.sm,
   },
   infoText: {
     fontSize: fontSize(12),
